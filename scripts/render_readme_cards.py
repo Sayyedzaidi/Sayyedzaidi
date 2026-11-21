@@ -19,7 +19,7 @@ OUT = os.path.join(ROOT, "cards")
 FONTS = os.path.join(ROOT, "fonts")
 PORTRAIT = os.path.join(ROOT, "sayyed-ascii.svg")
 
-# ---- Brand Tokens -----------------------------------------------------------
+# ---- Brand Tokens (Matched to Avi Vashishta's signature palette) -------------
 PAPER = "#f3f3f1"
 PAPER_DEEP = "#e2e2de"
 INK = "#111111"
@@ -27,9 +27,9 @@ INK_SOFT = "#3a3a3c"
 MUTED = "#6e6e73"
 RULE = "#dcdcd7"
 
-COLOR_ANALYZE = "#2f55ff"  # Royal blue
-COLOR_EXPLORE = "#0ea5e9"  # Electric cyan / sky
-COLOR_BUILD = "#8b5cf6"    # Purple / violet
+TECH = "#2f55ff"    # Vibrant Blue
+STUDIO = "#ef3b2d"  # Iconic Red
+LEARN = "#ffc81a"   # Golden Yellow
 
 W = 880  # Full card width for GitHub's README column (100%)
 
@@ -156,7 +156,7 @@ def hero():
 <defs>
   <linearGradient id="shine" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="600" y2="0">
     <stop offset="0" stop-color="{INK}"/><stop offset=".42" stop-color="{INK}"/>
-    <stop offset=".5" stop-color="{COLOR_ANALYZE}"/><stop offset=".58" stop-color="{INK}"/>
+    <stop offset=".5" stop-color="{TECH}"/><stop offset=".58" stop-color="{INK}"/>
     <stop offset="1" stop-color="{INK}"/>
     <animateTransform attributeName="gradientTransform" type="translate" values="-600 0;600 0;600 0"
       keyTimes="0;.45;1" dur="7s" begin="1.6s" repeatCount="indefinite"/>
@@ -164,17 +164,17 @@ def hero():
 </defs>
 <rect width="{W}" height="{h}" rx="14" fill="{PAPER}"/>
 <g class="f" {d(0)}>
-  <rect class="live" x="48" y="49" width="8" height="8" rx="2" fill="{COLOR_ANALYZE}"/>
+  <rect class="live" x="48" y="49" width="8" height="8" rx="2" fill="{TECH}"/>
   <text x="66" y="57" font-family="{MONO}" font-size="12" letter-spacing="1" fill="{MUTED}">ANALYST &amp; EXPLORER &middot; MUMBAI, INDIA</text>
 </g>
 <text class="r" {d(0.15)} x="44" y="190" font-family="{SERIF}" font-size="116" letter-spacing="-2.5" fill="{INK}">Sayyed</text>
 <text class="r" {d(0.3)} x="44" y="290" font-family="{SERIF}" font-style="italic" font-size="116" letter-spacing="-2.5" fill="url(#shine)">Zaidi</text>
 <g class="r" {d(0.55)}>
-  {text_lines(48, 338, ["Transforming complex data into actionable insight.", "Exploring intelligent systems, automation, and open code."], 27, f'font-family="{SANS}" font-size="18" fill="{INK_SOFT}"')}
+  {text_lines(48, 338, ["Data-driven analytics, exploratory insights,", "and crafting intelligent digital solutions."], 27, f'font-family="{SANS}" font-size="18" fill="{INK_SOFT}"')}
 </g>
 <g class="f" {d(0.8)}>
   <text x="48" y="396" font-family="{MONO}" font-size="13" fill="{INK}">github.com/Sayyedzaidi</text>
-  <text class="nu" x="220" y="396" font-family="{MONO}" font-size="13" fill="{COLOR_ANALYZE}">&#8599;</text>
+  <text class="nu" x="220" y="396" font-family="{MONO}" font-size="13" fill="{TECH}">&#8599;</text>
 </g>
 <g transform="translate(520 46) scale({s}) translate(-20 -37)" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">
   {''.join(portrait)}
@@ -256,7 +256,7 @@ def activity(data):
         is_best = m is best
         bh = max(6, round(m["total"] / top * maxh))
         x = x0 + i * (bw + gap)
-        fill = COLOR_ANALYZE if is_best else ("#c9c9c4" if partial else INK)
+        fill = TECH if is_best else ("#c9c9c4" if partial else INK)
         try:
             label = datetime.date.fromisoformat(m["month"] + "-01").strftime("%b")
         except Exception:
@@ -270,7 +270,7 @@ def activity(data):
         if is_best:
             bars.append(
                 f'<text class="p" style="animation-delay:3.2s" x="{x + bw / 2:.1f}" y="{base - bh - 10}" '
-                f'text-anchor="middle" font-family="{MONO}" font-size="11" fill="{COLOR_ANALYZE}">{m["total"]:,}</text>'
+                f'text-anchor="middle" font-family="{MONO}" font-size="11" fill="{TECH}">{m["total"]:,}</text>'
             )
     cs = data.get("current_streak", {}).get("length", 0)
     ls = data.get("longest_streak", {}).get("length", 0)
@@ -305,9 +305,9 @@ def activity(data):
 # ---- 4 · repo cards -----------------------------------------------------------
 REPO_W, REPO_H = 880 / 3 - 8, 176
 REPOS = [
-    ("data-analytics-core", "Curated analytical pipelines, statistical modeling, and insight dashboards.", "Python", COLOR_ANALYZE),
-    ("intelligent-automation", "Autonomous scraping workflows, data transformations, and scheduled bots.", "Python", COLOR_EXPLORE),
-    ("system-explorations", "Exploratory architectures, API experiments, and open-source tooling.", "TypeScript", COLOR_BUILD),
+    ("data-analytics-toolkit", "Interactive dashboards, exploratory data analyses, and statistical modeling.", "Python", TECH),
+    ("intelligent-automation", "Automated scrapers, daily scheduled bots, and workflow integrations.", "Python", STUDIO),
+    ("learning-agent", "Experiments with LLMs, autonomous agents, and system optimizations.", "TypeScript", LEARN),
 ]
 
 
@@ -337,7 +337,7 @@ def section_title(text, italic, theme):
 
 
 # ---- 5 · blue contribution graph -----------------------------------------------
-BLUE = [PAPER_DEEP, "#c8d3ff", "#94a8ff", "#6280ff", COLOR_ANALYZE, "#1a3be0"]
+BLUE = [PAPER_DEEP, "#c8d3ff", "#94a8ff", "#6280ff", TECH, "#1a3be0"]
 
 
 def level_for(c):
@@ -381,7 +381,7 @@ def heatmap(data):
     h = gy + 7 * step + 44
     body = f"""
 <rect width="{W}" height="{h}" rx="14" fill="{PAPER}"/>
-<text class="r" {d(0.8)} x="42" y="62" font-family="{SERIF}" font-size="34" fill="{INK}">Every day, <tspan font-style="italic" fill="{COLOR_ANALYZE}">in focus</tspan></text>
+<text class="r" {d(0.8)} x="42" y="62" font-family="{SERIF}" font-size="34" fill="{INK}">Every day, <tspan font-style="italic" fill="{TECH}">in blue</tspan></text>
 <text class="f" {d(0.8)} x="{right}" y="60" text-anchor="end" font-family="{MONO}" font-size="12" letter-spacing="1" fill="{MUTED}">REFRESHED DAILY</text>
 {''.join(cells)}
 <g class="f" {d(2.4)}>{labels}
@@ -400,15 +400,15 @@ if __name__ == "__main__":
         data = {"total_contributions": 1, "active_days": 1, "current_streak": {"length": 0}, "longest_streak": {"length": 1}, "best_day": {"date": "2026-01-06", "count": 1}, "monthly": [{"month": "2026-01", "total": 1}], "days": []}
 
     hero()
-    tile("build", "ANALYZE", COLOR_ANALYZE, "#ffffff", "360°", "insights",
-         "Data modeling, statistical inference, quantitative exploration and high-impact business metrics.", 3.1, 0)
-    tile("brand", "EXPLORE", COLOR_EXPLORE, "#ffffff", "100%", "curiosity",
-         "Probing emerging technologies, system architectures, intelligent automation and uncharted tools.", 3.35, 1)
-    tile("learn", "BUILD", COLOR_BUILD, "#ffffff", "0 to 1", "execution",
-         "Developing analytical pipelines, robust scrapers, clean APIs and reliable software solutions.", 3.6, 2)
+    tile("build", "BUILD", TECH, "#ffffff", "10+", "projects",
+         "Data analytics pipelines, predictive models, and Python automations.", 3.1, 0)
+    tile("brand", "EXPLORE", STUDIO, "#ffffff", "100%", "curiosity",
+         "Deep dives into intelligent agents, emerging tech, and modern systems.", 3.35, 1)
+    tile("learn", "LEARN", LEARN, INK, "24/7", "growth",
+         "Mastering modern data engineering, machine learning, and algorithms.", 3.6, 2)
     activity(data)
     for i, (name, desc, lang, color) in enumerate(REPOS):
         repo_card(i, name, desc, lang, color, 0)
-    section_title("What I'm", "exploring & building", "dark")
-    section_title("What I'm", "exploring & building", "light")
+    section_title("What I'm", "coding", "dark")
+    section_title("What I'm", "coding", "light")
     heatmap(data)
