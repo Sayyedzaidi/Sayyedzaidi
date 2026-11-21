@@ -182,6 +182,8 @@ def hero():
 """
     write("hero.svg", svg(W, h, body, ["serif", "serif-i", "sans", "mono"],
                           "Sayyed Zaidi. Analyst & Explorer based in Mumbai, India. Transforming complex data into actionable insight."))
+    write("hero-card.svg", svg(W, h, body, ["serif", "serif-i", "sans", "mono"],
+                               "Sayyed Zaidi. Analyst & Explorer based in Mumbai, India. Transforming complex data into actionable insight."))
 
 
 # ---- 2 · world tiles ----------------------------------------------------------
